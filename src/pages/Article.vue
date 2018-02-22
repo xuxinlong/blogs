@@ -40,10 +40,10 @@
       return {
         value: 'ceshi',
         title: '无标题',
-        default_open: 'preview',
-        editable: true,
-        subfield: true,
+        default_open: 'edit',
+        subfield: false,
         toolbarsFlag: true,
+        editable: true,
       };
     },
     created() {

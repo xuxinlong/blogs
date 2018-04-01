@@ -2,34 +2,37 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   parserOptions: {
-    sourceType: 'module'
+    parser: 'babel-eslint'
   },
   env: {
     browser: true,
   },
-  extends: 'airbnb-base',
+  // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
+  // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
+  extends: ['plugin:vue/essential', 'airbnb-base'],
   // required to lint *.vue files
   plugins: [
-    'html',
-    'eslint-plugin-html'
+    'vue'
   ],
   // check if imports actually resolve
-  'settings': {
+  settings: {
     'import/resolver': {
-      'webpack': {
-        'config': 'build/webpack.base.conf.js'
+      webpack: {
+        config: 'build/webpack.base.conf.js'
       }
     }
   },
   // add your custom rules here
-  'rules': {
+  rules: {
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
-      'js': 'never',
-      'vue': 'never'
+      js: 'never',
+      vue: 'never'
     }],
+    'linebreak-style': 0,
+    "no-prototype-builtins": 0,
+    "no-confusing-arrow": 0,
     "no-nested-ternary": 0,
     "no-extend-native": 0,
     "no-cond-assign": 0,
@@ -59,12 +62,12 @@ module.exports = {
     "import/extensions": 0,
     "import/no-extraneous-dependencies": 0,
     'no-shadow': 0,                  // disallow declaration of variables already declared in the outer scope
-    'no-shadow-restricted-names': 0, // disallow shadowing of names such as arguments
+    'no-shadow-restricted-names': 0,
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
-      'optionalDependencies': ['test/unit/index.js']
+      optionalDependencies: ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
 }

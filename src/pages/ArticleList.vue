@@ -12,7 +12,7 @@
     <div class="right-cont">
       <div class="cont-oprate">
         <input class="search" type="text" />
-        <a class="create-btn">创建文章</a>
+        <a class="create-btn" href="#article/edit">创建文章</a>
       </div>
       <ul>
         <li v-for="item in articles">
@@ -48,7 +48,7 @@
 </script>
 
 <style lang="less">
-  @import "~mavon-editor/dist/css/index.css";
+  // @import "mavon-editor/dist/css/index.css";
   .article-list {
     height: 100%;
     .left-bar {

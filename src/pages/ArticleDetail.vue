@@ -2,7 +2,6 @@
   <div class="article-edit">
     <div class="article-edit-area">
       <div class="edit-header">
-        <span class="save-btn" @click="save">保存</span>
         <input id="test" type="text" v-model="title"/>
       </div>
       <mavon-editor class="edit-area" v-model="value" :toolbarsFlag="toolbarsFlag" :subfield="subfield" :editable="editable" :default_open="default_open" :ishljs="true"></mavon-editor>

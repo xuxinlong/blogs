@@ -1,12 +1,10 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-// import mavonEditor from 'mavon-editor'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
 
-import App from './App'
-import router from './router'
-
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // Vue.use(mavonEditor)
 /* eslint-disable no-new */
@@ -15,4 +13,4 @@ new Vue({
   router,
   template: '<App/>',
   components: { App }
-})
+});

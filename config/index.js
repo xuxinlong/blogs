@@ -9,9 +9,9 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/',
     proxyTable: {},
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '0.0.0.0', // can be overwritten by process.env.HOST
     port: 6060, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -21,11 +21,11 @@ module.exports = {
     cacheBusting: true,
 
     cssSourceMap: true,
-    // proxyTable: {
-    //   '/':{
-    //     target: 'http://127.0.0.1:80',
-    //   },
-    // }
+    proxyTable: {
+      '/':{
+        target: 'http://127.0.0.1:80',
+      },
+    }
   },
 
   build: {

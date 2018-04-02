@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/Home'
-import Article from '@/pages/ArticleEdit.vue'
+import ArticleEdit from '@/pages/ArticleEdit.vue'
 import ArticleList from '@/pages/ArticleList.vue'
+import ArticleDetail from '@/pages/ArticleDetail.vue'
 
 Vue.use(Router)
 
@@ -15,13 +16,18 @@ export default new Router({
     },
     {
       path: '/article/edit',
-      name: 'article',
-      component: Article
+      name: 'articleEdit',
+      component: ArticleEdit
     },
     {
       path: '/article/list',
       name: 'articleList',
       component: ArticleList
+    },
+    {
+      path: '/article/detail/:id',
+      name: 'articleDetail',
+      component: ArticleDetail
     }
   ]
 })

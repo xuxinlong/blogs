@@ -47,13 +47,8 @@
   };
 </script>
 
-<style lang="less">
+<style lang="scss">
   @import "mavon-editor/dist/css/index.css";
-  html, body, #app, .container{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-  }
   .article-edit {
     height: 100%;
 
@@ -83,7 +78,7 @@
           background-color: #ea6f5a;
         }
         input {
-          width: calc(~"100% - 120px");
+          width: calc(100% - 120px);
           border-width: 0px;
           padding: 0 80px 10px 40px;
           border: none;
@@ -100,7 +95,7 @@
         }
       }
       .edit-area {
-        height: calc(~"100% - 65px");
+        height: calc(100% - 65px);
         padding-top: 65px;
       }
     }

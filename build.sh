@@ -1,4 +1,5 @@
 #!/bin/sh
+rm -rf ./dist/*
 npm run build
 tar -zcf blogs.tar.gz ./dist/*
 scp blogs.tar.gz root@47.104.157.93:/data/app/html/blogs/blogs.tar.gz

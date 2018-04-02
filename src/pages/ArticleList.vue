@@ -12,11 +12,11 @@
     <div class="right-cont">
       <div class="cont-oprate">
         <input class="search" type="text" />
-        <a class="create-btn" href="#article/edit">创建文章</a>
+        <a class="create-btn" @click="toEdit">创建文章</a>
       </div>
       <ul>
         <li v-for="item in articles">
-          <div class="art-title"><a>{{item.title}}</a></div>
+          <div class="art-title"><a @click="toDetail(item.id)">{{item.title}}</a></div>
           <div class="art-text">{{item.text}}</div>
         </li>
       </ul>
@@ -42,12 +42,18 @@
         api.getArticle({user_id: 1}).then((res) => {
           this.articles = res.data.data;
         });
+      },
+      toEdit() {
+        this.$router.push({ name: 'articleEdit'});
+      },
+      toDetail(id) {
+        this.$router.push({ name: 'articleDetail', params: {id: id}});
       }
     },
   };
 </script>
 
-<style lang="less">
+<style lang="scss">
   // @import "mavon-editor/dist/css/index.css";
   .article-list {
     height: 100%;

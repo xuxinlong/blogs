@@ -8,9 +8,12 @@ const http = function (url, type, params) {
 
 export default {
   getArticle(params) {
-    return http('blog/article/info', 'get', params);
+    return http('/blog/article/list', 'get', params);
   },
   addArticle(params) {
-    return http('blog/article/add', 'post', params);
+    return http('/blog/article/add', 'post', params);
+  },
+  getArticleDetail(params) {
+    return http('/blog/article/detail', 'post', params);
   },
 };

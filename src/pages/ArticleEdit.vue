@@ -28,8 +28,13 @@
       };
     },
     created() {
+      document.body.className = 'fullScreen';
       api.getArticle({user_id: 1}).then(function (res) {
       });
+    },
+    beforeDestroy() {
+      document.body.className = '';
+      console.log(arguments[0]);
     },
     methods: {
       save() {

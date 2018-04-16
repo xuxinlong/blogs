@@ -2,7 +2,13 @@
   <div class="article-detail">
     <div class="article-header">
       <div class="article-title">{{title}}</div>
-      <div class="article-author">{{author}}</div>
+      <div class="article-info">
+        <img src=""/>
+        <div class="info">
+          <span>{{author}}</span>
+          <div><span>{{detail.time | parseDate('yyyy.MM.dd hh:mm')}}</span></div>
+        </div>
+      </div>
     </div>
     <mavon-editor class="edit-area" v-model="value" :toolbarsFlag="toolbarsFlag" :subfield="subfield"  :default_open="default_open" :ishljs="true"></mavon-editor>
   </div>
@@ -23,7 +29,8 @@
         default_open: 'preview',
         toolbarsFlag: false,
         editable: false,
-        value: 'test'
+        value: 'test',
+        detail: {}
       };
     },
     created() {
@@ -36,17 +43,7 @@
           this.title = data.title;
           this.value = data.text;
           this.subfield = false;
-        });
-      },
-      save() {
-        const params = {
-          title: this.title || '无标题',
-          text: this.value,
-          user_id: 1,
-          time: new Date().getTime()
-        };
-        api.addArticle(params).then(function () {
-
+          this.detail = data;
         });
       },
     },
@@ -54,4 +51,10 @@
 </script>
 
 <style lang="scss">
+  .article-detail {
+    .article-title {
+      font-size: 34px;
+      font-weight: 700;
+    }
+  }
 </style>

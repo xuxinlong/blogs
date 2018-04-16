@@ -21,6 +21,9 @@ export default {
     min-height: 100%;
     background-color: #FFF;
   }
+  body.fullScreen .container {
+    width: 100%;
+  }
   input {
     padding: 0px;
   }

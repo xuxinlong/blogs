@@ -8,6 +8,7 @@
           <span>{{author}}</span>
           <div><span>{{detail.time | parseDate('yyyy.MM.dd hh:mm')}}</span></div>
         </div>
+        <div class="edit-btn" @click="toEdit">编辑</div>
       </div>
     </div>
     <mavon-editor class="edit-area" v-model="value" :toolbarsFlag="toolbarsFlag" :subfield="subfield"  :default_open="default_open" :ishljs="true"></mavon-editor>
@@ -46,6 +47,9 @@
           this.detail = data;
         });
       },
+      toEdit() {
+        this.$router.push({ name: 'articleEdit', params: {id: this.$route.params.id}});
+      }
     },
   };
 </script>
@@ -55,6 +59,23 @@
     .article-title {
       font-size: 34px;
       font-weight: 700;
+    }
+    .article-info {
+      position: relative;
+    }
+    .edit-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 100px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 20px;
+      font-size: 15px;
+      color: #fff;
+      cursor: pointer;
+      background-color: #ea6f5a;
     }
   }
 </style>

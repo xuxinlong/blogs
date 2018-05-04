@@ -29,7 +29,11 @@
     },
     created() {
       document.body.className = 'fullScreen';
-      api.getArticle({user_id: 1}).then(function (res) {
+
+      api.getArticleDetail({id: this.$route.params.id}).then((res) => {
+        const data = res.data.data;
+        this.title = data.title;
+        this.value = data.text;
       });
     },
     beforeDestroy() {
@@ -44,9 +48,16 @@
           user_id: 1,
           time: new Date().getTime()
         };
-        api.addArticle(params).then(function () {
-
-        });
+        if (this.$route.params.id) {
+          params.blog_id = this.$route.params.id;
+          api.updateArticle(params).then((res) => {
+            this.$router.push({name: 'articleList'});
+          });
+        } else {
+          api.addArticle(params).then((res) => {
+            this.$router.push({name: 'articleList'});
+          }); 
+        }
       },
     },
   };

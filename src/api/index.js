@@ -13,6 +13,9 @@ export default {
   addArticle(params) {
     return http('/blog/article/add', 'post', params);
   },
+  updateArticle(params) {
+    return http('/blog/article/update', 'post', params);
+  },
   getArticleDetail(params) {
     return http('/blog/article/detail', 'post', params);
   },

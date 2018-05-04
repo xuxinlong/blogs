@@ -2,7 +2,7 @@
   <div class="article-list">
     <div class="left-bar">
       <div class="logo">
-        <a>龙</a>
+        <a>龍</a>
       </div>
       <ul>
         <li class="active">日记本</li>
@@ -44,7 +44,7 @@
         });
       },
       toEdit() {
-        this.$router.push({ name: 'articleEdit'});
+        this.$router.push({ name: 'articleEdit' });
       },
       toDetail(id) {
         this.$router.push({ name: 'articleDetail', params: {id: id}});

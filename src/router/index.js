@@ -4,6 +4,7 @@ import Home from '@/pages/Home'
 import ArticleEdit from '@/pages/ArticleEdit.vue'
 import ArticleList from '@/pages/ArticleList.vue'
 import ArticleDetail from '@/pages/ArticleDetail.vue'
+import Login from '@/pages/login.vue'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/article/detail/:id',
       name: 'articleDetail',
       component: ArticleDetail
+    },
+    {
+      path: '/user/login',
+      name: 'login',
+      component: Login
     }
   ]
 })

@@ -18,6 +18,7 @@
         <li v-for="item in articles">
           <div class="art-title"><a @click="toDetail(item.id)">{{item.title}}</a></div>
           <div class="art-text">{{item.text}}</div>
+          <div class="art-delete-btn" v-if="item.isAuther" @click="deleteArticle(item.id)">删除</div>
         </li>
       </ul>
     </div>
@@ -39,7 +40,7 @@
     },
     methods: {
       getArticles() {
-        api.getArticle({user_id: 1}).then((res) => {
+        api.getArticle().then((res) => {
           this.articles = res.data.data;
         });
       },
@@ -48,6 +49,11 @@
       },
       toDetail(id) {
         this.$router.push({ name: 'articleDetail', params: {id: id}});
+      },
+      deleteArticle(id) {
+        api.deleteArticle({'blog_id': id}).then((res) => {
+          this.$router.go(0);
+        });
       }
     },
   };
@@ -118,6 +124,7 @@
         }
       }
       li {
+        position: relative;
         height: 60px;
         padding: 15px 10px 15px 25px;
         border-bottom: 1px solid #d9d9d9;
@@ -132,6 +139,16 @@
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+        }
+        .art-delete-btn {
+          position: absolute;
+          top: 15px;
+          right: 10px;
+          padding: 2px 5px;
+          color: #ec7259;
+          cursor: pointer;
+          border: 1px solid rgba(236, 97, 73, 0.7);
+          border-radius: 15px;
         }
       }
     }

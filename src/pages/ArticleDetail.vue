@@ -8,7 +8,7 @@
           <span>{{author}}</span>
           <div><span>{{detail.time | parseDate('yyyy.MM.dd hh:mm')}}</span></div>
         </div>
-        <div class="edit-btn" @click="toEdit">编辑</div>
+        <div v-if="detail.isAuther" class="edit-btn" @click="toEdit">编辑</div>
       </div>
     </div>
     <mavon-editor class="edit-area" v-model="value" :toolbarsFlag="toolbarsFlag" :subfield="subfield"  :default_open="default_open" :ishljs="true"></mavon-editor>

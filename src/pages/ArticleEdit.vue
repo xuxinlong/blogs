@@ -29,12 +29,13 @@
     },
     created() {
       document.body.className = 'fullScreen';
-
-      api.getArticleDetail({id: this.$route.params.id}).then((res) => {
-        const data = res.data.data;
-        this.title = data.title;
-        this.value = data.text;
-      });
+      if (this.$route.params.id) {
+        api.getArticleDetail({id: this.$route.params.id}).then((res) => {
+          const data = res.data.data;
+          this.title = data.title;
+          this.value = data.text;
+        });
+      }
     },
     beforeDestroy() {
       document.body.className = '';

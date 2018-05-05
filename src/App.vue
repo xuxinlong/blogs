@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <div class="header">
+      <span class="logo">龍</span>
+      <span class="login-nav" @click="toLogin">登录</span>
     </div>
     <div class="container">
       <router-view></router-view>
@@ -9,9 +11,14 @@
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  export default {
+    name: 'app',
+    methods: {
+      toLogin() {
+        this.$router.push({ name: 'login'});
+      }
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -57,5 +64,24 @@ export default {
     height: 48px;
     line-height: 48px;
     box-shadow: 0 0 1px 0px rgba(0,0,0,0.15);
+
+    .logo {
+      text-align: center;
+      color: #EC7259;
+      font-size: 24px;
+      margin-left: 10px;
+    }
+    .login-nav {
+      float: right;
+      width: 60px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      margin: 9px 5px 0 15px;
+      color: #EC7259;
+      border: 1px solid rgba(236,97,73,.7);
+      border-radius: 15px;
+      cursor: pointer;
+    }
   }
 </style>

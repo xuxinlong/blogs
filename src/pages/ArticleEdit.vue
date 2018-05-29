@@ -28,12 +28,13 @@
       };
     },
     created() {
+        console.log(this.$route.params.type);
       document.body.className = 'fullScreen';
       if (this.$route.params.id) {
         api.getArticleDetail({id: this.$route.params.id}).then((res) => {
           const data = res.data.data;
-          this.title = data.title;
-          this.value = data.text;
+          this.title = data.detail.title;
+          this.value = data.detail.text;
         });
       }
     },
@@ -44,6 +45,7 @@
     methods: {
       save() {
         const params = {
+          type: this.$route.params.type || 2,
           title: this.title || '无标题',
           text: this.value,
           user_id: 1,

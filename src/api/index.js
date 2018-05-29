@@ -10,7 +10,8 @@ const http = function (url, type, params) {
 
 export default {
   getArticle(params) {
-    return http('/blog/article/list', 'get', params);
+    var parmStr = params.type ? '?type=' + params.type : ''; 
+    return http('/blog/article/list' + parmStr, 'get');
   },
   addArticle(params) {
     return http('/blog/article/add', 'post', params);

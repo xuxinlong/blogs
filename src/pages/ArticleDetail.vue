@@ -6,7 +6,7 @@
         <img src=""/>
         <div class="info">
           <span>{{author}}</span>
-          <div><span>{{detail.time | parseDate('yyyy.MM.dd hh:mm')}}</span></div>
+          <div><span>{{detail.time | parseDate('yyyy.MM.dd hh:mm')}}</span> <span> 字数:{{value.length}}</span></div>
         </div>
         <div v-if="detail.isAuther" class="edit-btn" @click="toEdit">编辑</div>
       </div>
@@ -30,7 +30,8 @@
         default_open: 'preview',
         toolbarsFlag: false,
         editable: false,
-        value: 'test',
+        value: '',
+        user_info: {},
         detail: {}
       };
     },
@@ -41,10 +42,13 @@
       getArticleDetail() {
         api.getArticleDetail({id: this.$route.params.id}).then((res) => {
           const data = res.data.data;
-          this.title = data.title;
-          this.value = data.text;
+          this.title = data.detail.title;
+          this.value = data.detail.text;
           this.subfield = false;
-          this.detail = data;
+          this.author = data.user_info.name;
+
+          this.detail = data.detail;
+          this.user_info = data.user_info;
         });
       },
       toEdit() {

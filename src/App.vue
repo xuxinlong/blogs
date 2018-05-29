@@ -2,6 +2,7 @@
   <div id="app">
     <div class="header">
       <span class="logo">龍</span>
+      <span>个人博客</span>
       <span class="login-nav" @click="toLogin">登录</span>
     </div>
     <div class="container">
@@ -60,12 +61,14 @@
     cursor: pointer;
   }
   .header {
+    text-align: center;
     width: 100%;
     height: 48px;
     line-height: 48px;
     box-shadow: 0 0 1px 0px rgba(0,0,0,0.15);
 
     .logo {
+      float: left;
       text-align: center;
       color: #EC7259;
       font-size: 24px;

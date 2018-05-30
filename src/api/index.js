@@ -27,5 +27,8 @@ export default {
   },
   login(params) {
     return http('/user/user/login', 'post', params);
+  },
+  getUserInfo() {
+    return http('/user/user/info', 'get');
   }
 };

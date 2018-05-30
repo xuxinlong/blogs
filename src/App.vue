@@ -3,7 +3,8 @@
     <div class="header">
       <span class="logo">龍</span>
       <span>个人博客</span>
-      <span class="login-nav" @click="toLogin">登录</span>
+      <span v-if="userInfo.name" class="login-nav">{{userInfo.name}}</span>
+      <span v-else class="login-nav" @click="toLogin">登录</span>
     </div>
     <div class="container">
       <router-view></router-view>
@@ -12,11 +13,31 @@
 </template>
 
 <script>
+  import api from './api';
+
   export default {
     name: 'app',
+    data() {
+      return {
+        userInfo: {},
+      };
+    },
+    created() {
+      this.getUserInfo();
+    },
     methods: {
       toLogin() {
         this.$router.push({ name: 'login'});
+      },
+      getUserInfo() {
+        api.getUserInfo().then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === 0) {
+              this.userInfo = res.data.data;
+            }
+          }
+          console.log(res);
+        });
       }
     }
   }

@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header">
       <span class="logo">龍</span>
-      <span>个人博客</span>
+      <span class="title">个人博客</span>
       <span v-if="userInfo.name" class="login-nav">{{userInfo.name}}</span>
       <span v-else class="login-nav" @click="toLogin">登录</span>
     </div>
@@ -94,6 +94,11 @@
       color: #EC7259;
       font-size: 24px;
       margin-left: 10px;
+    }
+    .title {
+      color: #EC7259;
+      font-size: 24px;
+      font-weight: 500;
     }
     .login-nav {
       float: right;

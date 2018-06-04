@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="header">
-      <span class="logo">龍</span>
-      <span class="title">个人博客</span>
+      <span class="logo">技术</span>
+      <span class="title">博客</span>
       <span v-if="userInfo.name" class="login-nav">{{userInfo.name}}</span>
       <span v-else class="login-nav" @click="toLogin">登录</span>
     </div>
@@ -36,7 +36,6 @@
               this.userInfo = res.data.data;
             }
           }
-          console.log(res);
         });
       }
     }
@@ -69,7 +68,8 @@
     width: 960px;
     height: auto;
     margin: 0 auto;
-    // padding-top: 48px;
+    margin-top: 1px;
+    padding-bottom: 40px;
   }
   ul, li {
     padding: 0px;

@@ -28,7 +28,7 @@
       };
     },
     created() {
-        console.log(this.$route.params.type);
+      // console.log(this.$route.params.type);
       document.body.className = 'fullScreen';
       if (this.$route.params.id) {
         api.getArticleDetail({id: this.$route.params.id}).then((res) => {
@@ -40,7 +40,7 @@
     },
     beforeDestroy() {
       document.body.className = '';
-      console.log(arguments[0]);
+      // console.log(arguments[0]);
     },
     methods: {
       save() {

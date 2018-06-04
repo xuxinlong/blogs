@@ -2,7 +2,7 @@
   <div class="article-list">
     <div class="left-bar">
       <div class="logo">
-        <a>龍</a>
+        <a>{{(userInfo && userInfo.name) ? userInfo.name : 'name'}}</a>
       </div>
       <ul>
         <li :class="{active: barActive === 0}" class="all" @click="getArticles()">全部</li>
@@ -35,11 +35,14 @@
     },
     data() {
       return {
+        userInfo: {},
         articles: [],
-        barActive: 0,
+        barActive: 0
       };
     },
     created() {
+      console.log(this.userInfo.name);
+      this.getUserInfo();
       this.getArticles();
     },
     methods: {
@@ -65,6 +68,15 @@
         api.deleteArticle({'blog_id': id}).then((res) => {
           this.$router.go(0);
         });
+      },
+      getUserInfo() {
+        api.getUserInfo().then((res) => {
+          if (res.status === 200) {
+            if (res.data.code === 0) {
+              this.userInfo = res.data.data;
+            }
+          }
+        });
       }
     },
   };
@@ -75,7 +87,7 @@
   .article-list {
     height: 100%;
     .left-bar {
-      width: 260px;
+      width: 200px;
       height: 100%;
       float: left;
       padding-top: 30px;
@@ -84,9 +96,9 @@
         margin-bottom: 10px;
         a {
           display: block;
-          width: 160px;
-          height: 160px;
-          line-height: 160px;
+          width: 140px;
+          height: 140px;
+          line-height: 140px;
           margin: auto;
           font-size: 50px;
           color: #ec7259;
@@ -102,13 +114,14 @@
       }
       li.active,
       li:hover {
-        background-color: #e6e6e6;
+        background-color: rgba(236,97,73,0.6);
+        color: #FFF;
       }
     }
     .right-cont {
       height: 100%;
       padding-top: 30px;
-      margin-left: 280px;
+      margin-left: 220px;
       .cont-oprate {
         padding: 15px 0px;
         border-bottom: 1px solid #d9d9d9;

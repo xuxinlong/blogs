@@ -3,10 +3,9 @@
     <div class="article-header">
       <div class="article-title">{{title}}</div>
       <div class="article-info">
-        <img src=""/>
         <div class="info">
-          <span>{{author}}</span>
-          <div><span>{{detail.time | parseDate('yyyy.MM.dd hh:mm')}}</span> <span> 字数:{{value.length}}</span></div>
+          <span>作者：{{author}}</span>
+          <div><span>日期：{{detail.time | parseDate('yyyy.MM.dd hh:mm')}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> 字数:{{value.length}}</span></div>
         </div>
         <div v-if="detail.isAuther" class="edit-btn" @click="toEdit">编辑</div>
       </div>
@@ -60,26 +59,30 @@
 
 <style lang="scss">
   .article-detail {
-    .article-title {
-      font-size: 34px;
-      font-weight: 700;
-    }
-    .article-info {
-      position: relative;
-    }
-    .edit-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 100px;
-      height: 40px;
-      text-align: center;
-      line-height: 40px;
-      border-radius: 20px;
-      font-size: 15px;
-      color: #fff;
-      cursor: pointer;
-      background-color: #ea6f5a;
+    .article-header {
+      padding: 20px 0 10px 0;
+
+      .article-title {
+        font-size: 34px;
+        font-weight: 700;
+      }
+      .article-info {
+        position: relative;
+      }
+      .edit-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 20px;
+        font-size: 15px;
+        color: #fff;
+        cursor: pointer;
+        background-color: #ea6f5a;
+      } 
     }
   }
 </style>

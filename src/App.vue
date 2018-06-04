@@ -3,7 +3,7 @@
     <div class="header">
       <span class="logo">技术</span>
       <span class="title">博客</span>
-      <span v-if="userInfo.name" class="login-nav">{{userInfo.name}}</span>
+      <span v-if="userInfo.name" @click="toMe" class="login-nav">{{userInfo.name}}</span>
       <span v-else class="login-nav" @click="toLogin">登录</span>
     </div>
     <div class="container">
@@ -27,7 +27,10 @@
     },
     methods: {
       toLogin() {
-        this.$router.push({ name: 'login'});
+        this.$router.push({ name: 'login' });
+      },
+      toMe() {
+        this.$router.push({ name: 'articleList' });
       },
       getUserInfo() {
         api.getUserInfo().then((res) => {

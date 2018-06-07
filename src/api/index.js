@@ -10,8 +10,13 @@ const http = function (url, type, params) {
 
 export default {
   getArticle(params) {
-    var parmStr = params.type ? '?type=' + params.type : ''; 
-    return http('/blog/article/list' + parmStr, 'get');
+    var parmStr = params.type ? '?type=' + params.type : '';
+    // 判断是否登录，请求不同接口
+    if (getCookie('blog_token')) {
+      return http('/blog/article/list' + parmStr, 'get');
+    } else {
+      return http('/blog/article/list_public' + parmStr, 'get');
+    }
   },
   addArticle(params) {
     return http('/blog/article/add', 'post', params);
@@ -20,7 +25,12 @@ export default {
     return http('/blog/article/update', 'post', params);
   },
   getArticleDetail(params) {
-    return http('/blog/article/detail', 'post', params);
+    // 判断是否登录，请求不同接口
+    if (getCookie('blog_token')) {
+      return http('/blog/article/detail', 'post', params);
+    } else {
+      return http('/blog/article/detail_public', 'post', params);
+    }
   },
   deleteArticle(params) {
     return http('/blog/article/delete', 'post', params);

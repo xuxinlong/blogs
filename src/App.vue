@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="header">
-      <span class="logo">技术</span>
+      <a target="_blank" v-if="userInfo.github_url" :href="userInfo.github_url" class="github_url">Github</a>
       <span class="title">博客</span>
       <span v-if="userInfo.name" @click="toMe" class="login-nav">{{userInfo.name}}</span>
       <span v-else class="login-nav" @click="toLogin">登录</span>
@@ -91,12 +91,20 @@
     line-height: 48px;
     box-shadow: 0 0 1px 0px rgba(0,0,0,0.15);
 
-    .logo {
+    .github_url {
       float: left;
       text-align: center;
       color: #EC7259;
       font-size: 24px;
-      margin-left: 10px;
+      height: 36px;
+      line-height: 36px;
+      margin: 6px 0 0 10px;
+      padding: 0px 6px;
+      border-radius: 36px;
+    }
+    .github_url:hover {
+      background-color: #EC7259;
+      color: #fff;
     }
     .title {
       color: #EC7259;

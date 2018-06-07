@@ -2,9 +2,9 @@
   <div class="article-lists">
     <ul>
       <li v-for="item in articles">
-        <span class="type">{{ item.type === 1 ? '文' : '记' }}</span>
-        <div class="art-title"><a @click="toDetail(item.id)">{{item.title}}</a></div>
-        <div class="art-text">{{item.text}}</div>
+          <span class="type">{{ item.type === 1 ? '文' : '记' }}</span>
+          <div class="art-title"><a target="_blank" :href="item.id ? 'index.html#/article/detail/' + item.id : 'javascript: void(0);'">{{item.title}}</a></div>
+          <div class="art-text">{{item.text}}</div>
       </li>
     </ul>
   </div>
@@ -32,9 +32,6 @@
       },
       toEdit(type) {
         this.$router.push({ name: 'articleEdit', params: {type: type} });
-      },
-      toDetail(id) {
-        this.$router.push({ name: 'articleDetail', params: {id: id}});
       },
       deleteArticle(id) {
         api.deleteArticle({'blog_id': id}).then((res) => {
@@ -102,6 +99,9 @@
         font-size: 16px;
         font-weight: 700;
         margin-bottom: 10px;
+      }
+      .art-title a {
+        color: #0366d6;
       }
       .art-text {
         overflow: hidden;

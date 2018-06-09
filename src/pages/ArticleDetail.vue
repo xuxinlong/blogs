@@ -7,7 +7,7 @@
           <span>作者：{{author}}</span>
           <div><span>日期：{{detail.time | parseDate('yyyy.MM.dd hh:mm')}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> 字数:{{value.length}}</span></div>
         </div>
-        <div v-if="detail.isAuther" class="edit-btn" @click="toEdit">编辑</div>
+        <a :href="edit_url" v-if="detail.isAuther" class="edit-btn">编辑</a>
       </div>
     </div>
     <mavon-editor class="edit-area" v-model="value" :toolbarsFlag="toolbarsFlag" :subfield="subfield"  :default_open="default_open" :ishljs="true"></mavon-editor>
@@ -31,7 +31,8 @@
         editable: false,
         value: '',
         user_info: {},
-        detail: {}
+        detail: {},
+        edit_url: '#/article/edit'
       };
     },
     created() {
@@ -40,18 +41,18 @@
     methods: {
       getArticleDetail() {
         api.getArticleDetail({id: this.$route.params.id}).then((res) => {
-          const data = res.data.data;
-          this.title = data.detail.title;
-          this.value = data.detail.text;
-          this.subfield = false;
-          this.author = data.user_info.name;
+          if (res.data.code === 0) {
+            const data = res.data.data;
+            this.title = data.detail.title;
+            this.value = data.detail.text;
+            this.subfield = false;
+            this.author = data.user_info.name;
 
-          this.detail = data.detail;
-          this.user_info = data.user_info;
+            this.detail = data.detail;
+            this.user_info = data.user_info; 
+            this.edit_url = '#/article/edit?id=' + this.$route.params.id;
+          }
         });
-      },
-      toEdit() {
-        this.$router.push({ name: 'articleEdit', params: {id: this.$route.params.id}});
       }
     },
   };

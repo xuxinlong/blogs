@@ -30,8 +30,8 @@
     },
     created() {
       document.body.className = 'fullScreen';
-      if (this.$route.params.id) {
-        api.getArticleDetail({id: this.$route.params.id}).then((res) => {
+      if (this.$route.query.id) {
+        api.getArticleDetail({id: this.$route.query.id}).then((res) => {
           const data = res.data.data;
           this.title = data.detail.title;
           this.value = data.detail.text;
@@ -54,14 +54,16 @@
           user_id: 1,
           time: new Date().getTime()
         };
-        if (this.$route.params.id) {
-          params.blog_id = this.$route.params.id;
+        if (this.$route.query.id) {
+          params.blog_id = this.$route.query.id;
           api.updateArticle(params).then((res) => {
-            this.$router.push({name: 'articleList'});
+            console.log(res);
+            this.$router.push({name: 'articleDetail', params: {id: res.data.data}});
           });
         } else {
           api.addArticle(params).then((res) => {
-            this.$router.push({name: 'articleList'});
+            console.log(res.data);
+            this.$router.push({name: 'articleDetail', params: {id: res.data.data}});
           }); 
         }
       },

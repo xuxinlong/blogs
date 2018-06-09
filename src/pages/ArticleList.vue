@@ -1,8 +1,10 @@
 <template>
   <div class="article-list">
     <div class="left-bar">
-      <div class="logo">
-        <a>{{(userInfo && userInfo.name) ? userInfo.name : 'name'}}</a>
+      <div class="operate-btn">
+        <input class="search" placeholder="搜索" />
+        <a target="_blank" href="#/article/edit?type=1" class="create-btn">创建文章</a>
+        <a target="_blank" href="#/article/edit?type=2" class="create-btn">创建随记</a>
       </div>
       <ul>
         <li :class="{active: barActive === 0}" class="all" @click="getArticles()">全部</li>
@@ -11,11 +13,6 @@
       </ul>
     </div>
     <div class="right-cont">
-      <div class="cont-oprate">
-        <input class="search" type="text" />
-        <a class="create-btn" @click="toEdit(1)">创建文章</a>
-        <a class="create-btn" @click="toEdit(2)">创建随记</a>
-      </div>
       <ul>
         <li v-for="item in articles">
           <span class="type">{{ item.type === 1 ? '文' : '记' }}</span>
@@ -91,20 +88,41 @@
       height: 100%;
       float: left;
       padding-top: 30px;
-      .logo {
-        text-align: center;
-        margin-bottom: 10px;
-        a {
+
+      .operate-btn {
+        padding: 0 20px 20px;
+        border-bottom: 1px solid #ec7259;
+
+        a, input {
           display: block;
-          width: 140px;
-          height: 140px;
-          line-height: 140px;
-          margin: auto;
-          font-size: 50px;
-          color: #ec7259;
-          border: 1px solid rgba(236, 114, 89, 0.8);
-          border-radius: 5px;
+          box-sizing: border-box;
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          border: 1px solid #ec7259;
         }
+        input {
+          padding-left: 10px;
+          font-size: 14px;
+        }
+
+        a {
+          line-height: 30px;
+          margin: 10px 0px 0;
+          text-align: center;
+          border-radius: 30px;
+          color: #ec7259;
+        }
+
+        a:hover {
+          color: #FFF;
+          background-color: #ec7259;
+        }
+
+      }
+
+      ul {
+        margin: 20px;
       }
       li {
         cursor: pointer;

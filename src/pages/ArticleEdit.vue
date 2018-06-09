@@ -2,7 +2,7 @@
   <div class="article-edit">
     <div class="article-edit-area">
       <div class="edit-header">
-        <span class="save-btn" @click="save">保存</span>
+        <span class="save-btn" @click="save">{{btn_text}}</span>
         <input id="test" type="text" v-model="title"/>
       </div>
       <mavon-editor class="edit-area" v-model="value" :toolbarsFlag="toolbarsFlag" :subfield="subfield" :editable="editable" :default_open="default_open" :ishljs="true"></mavon-editor>
@@ -20,7 +20,8 @@
     data() {
       return {
         value: 'ceshi',
-        title: '无标题',
+        title: '',
+        btn_text: '',
         default_open: 'preview',
         subfield: true,
         toolbarsFlag: true,
@@ -28,25 +29,27 @@
       };
     },
     created() {
-      // console.log(this.$route.params.type);
       document.body.className = 'fullScreen';
       if (this.$route.params.id) {
         api.getArticleDetail({id: this.$route.params.id}).then((res) => {
           const data = res.data.data;
           this.title = data.detail.title;
           this.value = data.detail.text;
+          this.btn_text = (data.detail.type === 1) ? '保存文章' : '保存随记';
         });
+      } else {
+        this.title = (this.$route.query.type === '1') ? '新建文章' : '新建随记';
+        this.btn_text = (this.$route.query.type === '1') ? '保存文章' : '保存随记';
       }
     },
     beforeDestroy() {
       document.body.className = '';
-      // console.log(arguments[0]);
     },
     methods: {
       save() {
         const params = {
-          type: this.$route.params.type || 2,
-          title: this.title || '无标题',
+          type: this.$route.query.type || 2,
+          title: this.title,
           text: this.value,
           user_id: 1,
           time: new Date().getTime()
@@ -73,7 +76,6 @@
 
     .article-edit-area {
       position: relative;
-      // margin-left: 300px;
       height: 100%;
       .edit-header {
         width: 100%;
@@ -116,68 +118,6 @@
       .edit-area {
         height: calc(100% - 65px);
         padding-top: 65px;
-      }
-    }
-    .left-bar {
-      width: 160px;
-      height: 100%;
-      float: left;
-      background-color: #404040;
-      color: #FFF;
-      .back-home {
-        padding: 30px 18px 5px;
-        text-align: center;
-        a {
-          display: block;
-          font-size: 15px;
-          padding: 9px 0;
-          color: #ec7259;
-          border: 1px solid rgba(236,114,89,.8);
-          border-radius: 20px;
-        }
-      }
-      li {
-        cursor: pointer;
-        height: 40px;
-        line-height: 40px;
-        padding-left: 15px;
-      }
-      li.active,
-      li:hover {
-        border-left: 3px solid #ec7259;
-        padding-left: 12px;
-        background-color: #666;
-      }
-    }
-    .right-cont {
-      margin-left: 160px;
-      height: 100%;
-      .article-bar {
-        width: 300px;
-        height: 100%;
-        float: left;
-        overflow-y: auto;
-        border-right: 1px solid #d9d9d9;
-        .create-btn,
-        .create-affter-btn {
-          padding: 20px 10px 20px 25px;
-          cursor: pointer;
-        }
-        .create-btn {
-          border-bottom: 1px solid #d9d9d9;
-        }
-        li {
-          cursor: pointer;
-          height: 60px;
-          padding: 15px 10px 15px 25px;
-          border-bottom: 1px solid #d9d9d9;
-        }
-        li.active,
-        li:hover {
-          border-bottom: 1px solid #d9d9d9;
-          border-left: 5px solid #ec7259;
-          background-color: #e6e6e6;
-        }
       }
     }
     .save-btn {

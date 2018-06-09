@@ -36,7 +36,7 @@ export default {
     return http('/blog/article/delete', 'post', params);
   },
   login(params) {
-    return http('/user/user/login', 'post', params);
+    return http('/user/user/login_public', 'post', params);
   },
   getUserInfo() {
     return http('/user/user/info', 'get');

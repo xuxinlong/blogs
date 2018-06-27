@@ -18,6 +18,10 @@ export default {
       return http('/blog/article/list_public' + parmStr, 'get');
     }
   },
+  getPublicArticle(params) {
+    var parmStr = params.type ? '?type=' + params.type : '';
+    return http('/blog/article/list_public' + parmStr, 'get');
+  },
   addArticle(params) {
     return http('/blog/article/add', 'post', params);
   },

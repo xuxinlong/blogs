@@ -21,12 +21,12 @@
       };
     },
     created() {
-      this.getArticles();
+      this.getPublicArticle();
     },
     methods: {
-      getArticles(type) {
+      getPublicArticle(type) {
         var params = {'type': 1};
-        api.getArticle(params).then((res) => {
+        api.getPublicArticle(params).then((res) => {
           this.articles = res.data.data;
         });
       },

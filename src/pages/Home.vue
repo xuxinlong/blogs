@@ -21,6 +21,7 @@
       };
     },
     created() {
+      _hmt.push(['_trackPageview', '/home']);
       this.getPublicArticle();
     },
     methods: {

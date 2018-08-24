@@ -29,6 +29,7 @@
       };
     },
     created() {
+      _hmt.push(['_trackPageview', '/ArticleEdit']);
       document.body.className = 'fullScreen';
       if (this.$route.query.id) {
         api.getArticleDetail({id: this.$route.query.id}).then((res) => {

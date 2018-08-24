@@ -38,6 +38,7 @@
       };
     },
     created() {
+      _hmt.push(['_trackPageview', '/ArticleList']);
       console.log(this.userInfo.name);
       this.getUserInfo();
       this.getArticles();

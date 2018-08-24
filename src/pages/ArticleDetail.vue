@@ -36,6 +36,7 @@
       };
     },
     created() {
+      _hmt.push(['_trackPageview', '/ArticleDetail']);
       this.getArticleDetail();
     },
     methods: {

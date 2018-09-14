@@ -16,7 +16,7 @@
       <ul>
         <li v-for="item in articles">
           <span class="type">{{ item.type === 1 ? '文' : '记' }}</span>
-          <div class="art-title"><a target="_blank" :href="item.id ? 'index.html#/article/detail/' + item.id : 'javascript: void(0);'">{{item.title}}</a></div>
+          <div class="art-title"><a target="_blank" :href="item.id ? 'index.html#/article/detail/' + item.id : 'javascript: void(0);'">{{item.title}}</a> &nbsp;&nbsp;&nbsp; <span style="color: #2c3e50;">作者：{{item.autherName}}</span></div>
           <div class="art-text">{{item.text}}</div>
           <div class="art-delete-btn" v-if="item.isAuther" @click="deleteArticle(item.id)">删除</div>
         </li>

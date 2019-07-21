@@ -25,6 +25,11 @@
     created() {
       this.getUserInfo();
     },
+    watch: {
+      $route(to, from) {
+        window._hmt && window._hmt.push(['_trackPageview', '/#' + to.fullPath]);  
+      },
+    },
     methods: {
       toLogin() {
         this.$router.push({ name: 'login' });

@@ -39,7 +39,6 @@
     },
     created() {
       _hmt.push(['_trackPageview', '/ArticleList']);
-      console.log(this.userInfo.name);
       this.getUserInfo();
       this.getArticles();
     },
@@ -72,6 +71,7 @@
           if (res.status === 200) {
             if (res.data.code === 0) {
               this.userInfo = res.data.data;
+              this.$parent.userInfo = res.data.userInfo;
             }
           }
         });

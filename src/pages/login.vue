@@ -40,10 +40,11 @@
 
       	} else {
 	        api.login(params).then((res) => {
-	        	var data = res.data.data.data;
+	        	var data = res.data.data;
 	        	axios.defaults.headers['x-access-token'] = data.token;
 	        	setCookie('blog_token', data.token, data.config);
 	        	this.$router.push({name: 'articleList'});
+	        	this.$parent.userInfo = data.userInfo;
 	        });	
       	}
       }
